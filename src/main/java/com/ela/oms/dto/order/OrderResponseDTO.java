@@ -9,8 +9,17 @@ public class OrderResponseDTO {
     private String status;
     private Double totalAmount;
     private LocalDateTime orderDate;
+    private LocalDateTime updateDate;
 
     private List<OrderItemResponseDTO> items;
+
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
+    }
 
     public Long getOrderId() {
         return orderId;

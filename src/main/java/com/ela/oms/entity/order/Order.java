@@ -1,6 +1,7 @@
 package com.ela.oms.entity.order;
 
 import com.ela.oms.entity.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +37,6 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
@@ -46,6 +46,7 @@ public class Order {
     private Double totalAmount;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<OrderItem> items = new ArrayList<>();
 
     @PrePersist
