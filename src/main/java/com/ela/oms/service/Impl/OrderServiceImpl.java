@@ -1,9 +1,6 @@
 package com.ela.oms.service.Impl;
 
-import com.ela.oms.dto.order.OrderItemRequestDTO;
-import com.ela.oms.dto.order.OrderItemResponseDTO;
-import com.ela.oms.dto.order.OrderRequestDTO;
-import com.ela.oms.dto.order.OrderResponseDTO;
+import com.ela.oms.dto.order.*;
 import com.ela.oms.entity.customer.Customer;
 import com.ela.oms.entity.order.Order;
 import com.ela.oms.entity.order.OrderItem;
@@ -56,6 +53,20 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
         return mapToResponseDTO(savedOrder);
     }
+
+    @Override
+    public OrderResponseDTO updateOrderStatus(Long orderId, OrderStatusUpdateRequestDTO requestDTO) {
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+
+        order.setStatus(requestDTO.getStatus());
+
+        Order updatedOrder = orderRepository.save(order);
+
+        return mapToResponseDTO(updatedOrder);
+    }
+
 
     @Override
     public Order getOrder(Long orderId) {
