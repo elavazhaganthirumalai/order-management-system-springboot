@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(id);
     }
 
-    private Customer mapToEntity(CustomerRequestDTO dto) {
+    public Customer mapToEntity(CustomerRequestDTO dto) {
 
         Customer customer = new Customer();
         customer.setFirstName(dto.getFirstName());
