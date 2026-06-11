@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponseDTO createCustomer(CustomerRequestDTO customerDTO) {
         Customer customer = mapToEntity(customerDTO);
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
-            throw new DuplicateResourceException("Email already exists");
+            throw new DuplicateResourceException("Email already exists!");
         }
         Address address = customer.getAddress();
 
